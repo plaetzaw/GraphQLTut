@@ -8,10 +8,11 @@ require('dotenv').config();
 let username = process.env.username;
 let password = process.env.password;
 let db = process.env.database;
+let url = process.env.url
 
 mongoose
  .connect(
-`mongodb+srv://${username}:${password}@cluster0.j4egg.mongodb.net/${db}?retryWrites=true&w=majority`,
+`mongodb+srv://${username}:${password}@${url}/${db}?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true }
  )
  .then(() => console.log("Connected to MongoDB Atlas"))
