@@ -2,6 +2,7 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require("./schema/schema");
 const mongoose = require('mongoose');
+const cors = require('cors')
 require('dotenv').config();
 //graphqlHTTP is just a naming convention for GraphQL
 
@@ -23,7 +24,7 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use("/graphql", graphqlHTTP({ 
+app.use("/graphql", cors(), graphqlHTTP({ 
     schema,
     graphiql: true
 }))
