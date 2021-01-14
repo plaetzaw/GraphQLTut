@@ -2,11 +2,16 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const schema = require("./schema/schema");
 const mongoose = require('mongoose');
+require('dotenv').config();
 //graphqlHTTP is just a naming convention for GraphQL
+
+let username = process.env.username;
+let password = process.env.password;
+let db = process.env.database;
 
 mongoose
  .connect(
-  "mongodb+srv://Plato:test@cluster0.j4egg.mongodb.net/db?retryWrites=true&w=majority",
+`mongodb+srv://${username}:${password}@cluster0.j4egg.mongodb.net/${db}?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true }
  )
  .then(() => console.log("Connected to MongoDB Atlas"))
